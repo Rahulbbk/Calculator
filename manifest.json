@@ -12,7 +12,7 @@
   "lang": "en",
   "dir": "ltr",
   "categories": ["utilities", "education"],
-  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "display_override": ["standalone", "window-controls-overlay", "minimal-ui"],
   "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "prefer_related_applications": false,
   "launch_handler": {
