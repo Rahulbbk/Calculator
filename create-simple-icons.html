@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f2f5;
+            text-align: center;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #e6fffa;
+            border: 1px solid #81e6d9;
+        }
+        button {
+            padding: 12px 24px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #3182ce;
+        }
+        .icon-preview {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Quick Icon Generator</h1>
+    <p>Generate all required icons for your calculator app</p>
+    
+    <div id="status" class="status">
+        Ready to generate icons...
+    </div>
+    
+    <button onclick="generateAllIcons()">Generate All Icons Now</button>
+    <button onclick="downloadAllIcons()">Download All Icons</button>
+    
+    <div id="preview"></div>
+    
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        const generatedIcons = [];
+        
+        function createSimpleIcon(size, isMaskable = false) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            if (isMaskable) {
+                // Simple maskable icon
+                ctx.fillStyle = '#4299e1';
+                ctx.fillRect(0, 0, size, size);
+                
+                // Calculator symbol in center
+                ctx.fillStyle = 'white';
+                const center = size / 2;
+                const symbolSize = size * 0.3;
+                
+                // Simple calculator shape
+                ctx.fillRect(center - symbolSize/2, center - symbolSize/2, symbolSize, symbolSize);
+                ctx.fillStyle = '#2d3748';
+                ctx.fillRect(center - symbolSize/3, center - symbolSize/3, symbolSize*2/3, symbolSize/4);
+            } else {
+                // Simple regular icon
+                const gradient = ctx.createLinearGradient(0, 0, size, size);
+                gradient.addColorStop(0, '#4299e1');
+                gradient.addColorStop(1, '#3182ce');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, size, size);
+                
+                // Calculator symbol
+                ctx.fillStyle = 'white';
+                const center = size / 2;
+                const symbolSize = size * 0.4;
+                
+                // Simple calculator shape
+                ctx.fillRect(center - symbolSize/2, center - symbolSize/2, symbolSize, symbolSize);
+                ctx.fillStyle = '#2d3748';
+                ctx.fillRect(center - symbolSize/3, center - symbolSize/3, symbolSize*2/3, symbolSize/4);
+            }
+            
+            return canvas;
+        }
+        
+        function generateAllIcons() {
+            document.getElementById('status').innerHTML = 'Generating icons...';
+            generatedIcons.length = 0;
+            
+            sizes.forEach(size => {
+                // Regular icon
+                const canvas = createSimpleIcon(size, false);
+                generatedIcons.push({
+                    canvas: canvas,
+                    filename: `icon-${size}x${size}.png`
+                });
+                
+                // Maskable icon
+                const maskableCanvas = createSimpleIcon(size, true);
+                generatedIcons.push({
+                    canvas: maskableCanvas,
+                    filename: `icon-${size}x${size}-maskable.png`
+                });
+            });
+            
+            document.getElementById('status').innerHTML = `Generated ${generatedIcons.length} icons successfully!`;
+            
+            // Show preview
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '<h3>Icon Preview:</h3>';
+            generatedIcons.slice(0, 4).forEach(icon => {
+                const div = document.createElement('div');
+                div.className = 'icon-preview';
+                div.innerHTML = `<div>${icon.filename}</div>`;
+                div.appendChild(icon.canvas);
+                preview.appendChild(div);
+            });
+        }
+        
+        function downloadAllIcons() {
+            if (generatedIcons.length === 0) {
+                alert('Please generate icons first!');
+                return;
+            }
+            
+            document.getElementById('status').innerHTML = 'Downloading icons...';
+            
+            generatedIcons.forEach((icon, index) => {
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.download = icon.filename;
+                    link.href = icon.canvas.toDataURL('image/png');
+                    link.click();
+                    
+                    if (index === generatedIcons.length - 1) {
+                        document.getElementById('status').innerHTML = 'All icons downloaded! Move them to the icons folder and commit.';
+                    }
+                }, index * 100);
+            });
+        }
+        
+        // Auto-generate on load
+        window.onload = function() {
+            generateAllIcons();
+        };
+    </script>
+</body>
+</html> 
