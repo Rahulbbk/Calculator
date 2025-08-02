@@ -1,4 +1,5 @@
 {
+  "id": "smart-calculator",
   "name": "Smart Calculator",
   "short_name": "Calculator",
   "description": "AI-powered calculator with math facts and explanations",
@@ -9,8 +10,14 @@
   "orientation": "portrait",
   "scope": "./",
   "lang": "en",
+  "dir": "ltr",
   "categories": ["utilities", "education"],
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "prefer_related_applications": false,
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
   "icons": [
     {
       "src": "icons/icon-72x72.png",
@@ -163,5 +170,16 @@
       "text": "text",
       "url": "url"
     }
-  }
+  },
+  "scope_extensions": [
+    {
+      "origin": "https://rahulbbk.github.io"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://rahulbbk.github.io/Calculator/manifest.json"
+    }
+  ]
 } 

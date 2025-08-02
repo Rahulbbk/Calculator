@@ -80,25 +80,38 @@
     
     <!-- Service Worker Registration -->
     <script>
+        // Register service worker immediately
         if ('serviceWorker' in navigator) {
+            // Register immediately without waiting for load
+            navigator.serviceWorker.register('./sw.js', {
+                scope: './'
+            }).then(registration => {
+                console.log('SW registered successfully: ', registration);
+                
+                // Check if update is available
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            console.log('New service worker installed');
+                        }
+                    });
+                });
+            }).catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+            
+            // Also register on load for redundancy
             window.addEventListener('load', () => {
-                // Add timeout to prevent hanging
-                const swRegistration = navigator.serviceWorker.register('./sw.js', {
-                    scope: './'
-                });
-                
-                swRegistration.then(registration => {
-                    console.log('SW registered successfully: ', registration);
-                }).catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
-                
-                // Add timeout fallback
-                setTimeout(() => {
-                    if (!navigator.serviceWorker.controller) {
-                        console.log('Service worker registration timed out, but app will still work');
-                    }
-                }, 5000);
+                if (!navigator.serviceWorker.controller) {
+                    navigator.serviceWorker.register('./sw.js', {
+                        scope: './'
+                    }).then(registration => {
+                        console.log('SW registered on load: ', registration);
+                    }).catch(error => {
+                        console.log('SW registration on load failed: ', error);
+                    });
+                }
             });
         } else {
             console.log('Service worker not supported');
