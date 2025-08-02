@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.rahulbbk.calculator" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Smart Calculator</name>
+    <description>
+        A modern, feature-rich calculator with AI-powered math facts and explanations.
+    </description>
+    <author email="dev@rahulbbk.com" href="https://github.com/Rahulbbk">
+        Rahul BBK
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="22" />
+        <preference name="android-targetSdkVersion" value="33" />
+        <preference name="android-compileSdkVersion" value="33" />
+        <preference name="android-buildToolsVersion" value="33.0.0" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="FadeSplashScreenDuration" value="300" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="ShowSplashScreen" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenBackgroundColor" value="#f0f2f5" />
+    <icon src="res/icon/android/drawable-ldpi-icon.png" density="ldpi" />
+    <icon src="res/icon/android/drawable-mdpi-icon.png" density="mdpi" />
+    <icon src="res/icon/android/drawable-hdpi-icon.png" density="hdpi" />
+    <icon src="res/icon/android/drawable-xhdpi-icon.png" density="xhdpi" />
+    <icon src="res/icon/android/drawable-xxhdpi-icon.png" density="xxhdpi" />
+    <icon src="res/icon/android/drawable-xxxhdpi-icon.png" density="xxxhdpi" />
+    <splash src="res/screen/android/screen-ldpi-portrait.png" density="port-ldpi" />
+    <splash src="res/screen/android/screen-mdpi-portrait.png" density="port-mdpi" />
+    <splash src="res/screen/android/screen-hdpi-portrait.png" density="port-hdpi" />
+    <splash src="res/screen/android/screen-xhdpi-portrait.png" density="port-xhdpi" />
+    <splash src="res/screen/android/screen-xxhdpi-portrait.png" density="port-xxhdpi" />
+    <splash src="res/screen/android/screen-xxxhdpi-portrait.png" density="port-xxxhdpi" />
+</widget> 

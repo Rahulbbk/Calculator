@@ -1,0 +1,51 @@
+{
+  "name": "smart-calculator",
+  "displayName": "Smart Calculator",
+  "version": "1.0.0",
+  "description": "A modern, feature-rich calculator with AI-powered math facts and explanations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:android": "cordova build android",
+    "build:ios": "cordova build ios",
+    "run:android": "cordova run android",
+    "run:ios": "cordova run ios",
+    "platform:add:android": "cordova platform add android",
+    "platform:add:ios": "cordova platform add ios",
+    "plugin:add:network": "cordova plugin add cordova-plugin-network-information",
+    "plugin:add:splash": "cordova plugin add cordova-plugin-splashscreen",
+    "plugin:add:statusbar": "cordova plugin add cordova-plugin-statusbar"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "calculator",
+    "ai",
+    "math",
+    "gemini",
+    "android",
+    "ios"
+  ],
+  "author": "Rahul BBK",
+  "license": "MIT",
+  "devDependencies": {
+    "cordova-android": "^12.0.0",
+    "cordova-ios": "^7.0.0",
+    "cordova-plugin-network-information": "^3.0.0",
+    "cordova-plugin-splashscreen": "^6.0.1",
+    "cordova-plugin-statusbar": "^3.0.0"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {}
+    },
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "dependencies": {
+    "cordova": "^12.0.0"
+  }
+} 
