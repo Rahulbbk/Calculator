@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+        .icon-container {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 16px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3182ce;
+        }
+    </style>
+</head>
+<body>
+    <h1>Smart Calculator Icon Generator</h1>
+    <p>Click the buttons below to generate and download app icons:</p>
+    
+    <div id="icons"></div>
+    
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        function createIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#4299e1');
+            gradient.addColorStop(1, '#3182ce');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Calculator icon
+            ctx.fillStyle = 'white';
+            const padding = size * 0.2;
+            const calcWidth = size - (padding * 2);
+            const calcHeight = calcWidth * 0.8;
+            const calcX = padding;
+            const calcY = padding + (size - calcHeight) / 2;
+            
+            // Calculator body
+            ctx.fillRect(calcX, calcY, calcWidth, calcHeight);
+            
+            // Display area
+            ctx.fillStyle = '#2d3748';
+            const displayHeight = calcHeight * 0.25;
+            ctx.fillRect(calcX + calcWidth * 0.1, calcY + calcHeight * 0.1, calcWidth * 0.8, displayHeight);
+            
+            // Buttons
+            ctx.fillStyle = '#e2e8f0';
+            const buttonSize = calcWidth * 0.15;
+            const buttonSpacing = calcWidth * 0.05;
+            const buttonsStartY = calcY + calcHeight * 0.45;
+            
+            // First row of buttons
+            for (let i = 0; i < 4; i++) {
+                const x = calcX + calcWidth * 0.1 + (buttonSize + buttonSpacing) * i;
+                ctx.fillRect(x, buttonsStartY, buttonSize, buttonSize);
+            }
+            
+            // Second row of buttons
+            for (let i = 0; i < 4; i++) {
+                const x = calcX + calcWidth * 0.1 + (buttonSize + buttonSpacing) * i;
+                ctx.fillRect(x, buttonsStartY + buttonSize + buttonSpacing, buttonSize, buttonSize);
+            }
+            
+            // Third row of buttons
+            for (let i = 0; i < 4; i++) {
+                const x = calcX + calcWidth * 0.1 + (buttonSize + buttonSpacing) * i;
+                ctx.fillRect(x, buttonsStartY + (buttonSize + buttonSpacing) * 2, buttonSize, buttonSize);
+            }
+            
+            // Fourth row (zero button is wider)
+            ctx.fillRect(calcX + calcWidth * 0.1, buttonsStartY + (buttonSize + buttonSpacing) * 3, buttonSize * 2 + buttonSpacing, buttonSize);
+            ctx.fillRect(calcX + calcWidth * 0.1 + (buttonSize + buttonSpacing) * 3, buttonsStartY + (buttonSize + buttonSpacing) * 3, buttonSize, buttonSize);
+            
+            return canvas;
+        }
+        
+        function downloadIcon(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Generate all icons
+        sizes.forEach(size => {
+            const container = document.createElement('div');
+            container.className = 'icon-container';
+            
+            const canvas = createIcon(size);
+            container.appendChild(canvas);
+            
+            const button = document.createElement('button');
+            button.textContent = `Download ${size}x${size}`;
+            button.onclick = () => downloadIcon(canvas, `icon-${size}x${size}.png`);
+            container.appendChild(button);
+            
+            document.getElementById('icons').appendChild(container);
+        });
+        
+        // Add download all button
+        const downloadAllBtn = document.createElement('button');
+        downloadAllBtn.textContent = 'Download All Icons';
+        downloadAllBtn.style.marginTop = '20px';
+        downloadAllBtn.style.fontSize = '16px';
+        downloadAllBtn.onclick = () => {
+            sizes.forEach(size => {
+                const canvas = createIcon(size);
+                setTimeout(() => {
+                    downloadIcon(canvas, `icon-${size}x${size}.png`);
+                }, size * 10);
+            });
+        };
+        document.body.appendChild(downloadAllBtn);
+    </script>
+</body>
+</html> 
