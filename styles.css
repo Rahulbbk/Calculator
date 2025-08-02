@@ -1,0 +1,162 @@
+/* Custom styles for better aesthetics and responsiveness */
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5; /* Light gray background */
+    margin: 0;
+    padding: 1rem; /* Add some padding for smaller screens */
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for buttons */
+    grid-gap: 0.75rem; /* Gap between buttons */
+    max-width: 400px; /* Max width for the calculator */
+    width: 100%; /* Full width on smaller screens */
+    padding: 1.5rem;
+    border-radius: 1.5rem; /* More rounded corners */
+    background-color: #ffffff; /* White background for calculator */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.calculator-display {
+    grid-column: span 4; /* Display spans all 4 columns */
+    grid-row: span 2; /* Make it span 2 rows */
+    background-color: #2d3748; /* Darker background for display */
+    color: #ffffff;
+    padding: 1.5rem 1rem;
+    text-align: right;
+    border-radius: 0.75rem; /* Rounded corners for display */
+    margin-bottom: 1rem;
+    overflow: hidden;
+    display: flex; /* Use flexbox for vertical alignment */
+    flex-direction: column; /* Stack history and current vertically */
+    justify-content: flex-end; /* Align content to the bottom */
+    min-height: 8rem; /* Increased height for two lines */
+}
+
+#history-display {
+    font-size: 1.5rem; /* Smaller font for history */
+    color: #a0aec0; /* Lighter color for history */
+    min-height: 1.5em; /* Ensure it has some height even when empty */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#current-display {
+    font-size: 3.5rem; /* Larger font for current input/result */
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calculator-button {
+    background-color: #e2e8f0; /* Light gray for number buttons */
+    color: #2d3748;
+    font-size: 2rem;
+    padding: 1.25rem 0; /* Vertical padding */
+    border: none;
+    border-radius: 0.75rem; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-button:hover {
+    background-color: #cbd5e0; /* Darker gray on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.calculator-button:active {
+    transform: translateY(0); /* Press effect */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Operator buttons styling */
+.calculator-button.operator {
+    background-color: #4299e1; /* Blue for operators */
+    color: #ffffff;
+}
+
+.calculator-button.operator:hover {
+    background-color: #3182ce; /* Darker blue on hover */
+}
+
+/* Equals button styling */
+.calculator-button.equals {
+    background-color: #38a169; /* Green for equals */
+    color: #ffffff;
+}
+
+.calculator-button.equals:hover {
+    background-color: #2f855a; /* Darker green on hover */
+}
+
+/* Clear button styling */
+.calculator-button.clear {
+    background-color: #ef4444; /* Red for clear */
+    color: #ffffff;
+}
+
+.calculator-button.clear:hover {
+    background-color: #dc2626; /* Darker red on hover */
+}
+
+/* Zero button styling */
+.calculator-button.zero {
+    grid-column: span 2; /* Zero button spans 2 columns */
+}
+
+/* Specific styles for spanning buttons */
+.calculator-button.span-rows-2 {
+    grid-row: span 2;
+}
+
+/* Backspace button specific styling */
+.calculator-button.backspace {
+    background-color: #ff9800; /* Orange for backspace */
+    color: #ffffff;
+}
+
+.calculator-button.backspace:hover {
+    background-color: #f57c00; /* Darker orange on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .calculator-grid {
+        grid-gap: 0.5rem;
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+    .calculator-display {
+        font-size: 2.5rem;
+        padding: 1rem 0.75rem;
+        min-height: 6rem; /* Adjusted for smaller screens */
+    }
+    #history-display {
+        font-size: 1.2rem;
+    }
+    #current-display {
+        font-size: 2.5rem;
+    }
+    .calculator-button {
+        font-size: 1.5rem;
+        padding: 1rem 0;
+    }
+}
+
+/* Animation for math fact display and explanation display */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+} 

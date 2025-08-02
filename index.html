@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-grid">
+        <!-- Display Area -->
+        <div class="calculator-display" id="display-container">
+            <div id="history-display"></div>
+            <div id="current-display">0</div>
+        </div>
+
+        <!-- Buttons - Reordered for better layout -->
+        <button class="calculator-button clear" data-action="clear">C</button>
+        <button class="calculator-button operator" data-action="divide">÷</button>
+        <button class="calculator-button operator" data-action="multiply">×</button>
+        <button class="calculator-button operator" data-action="subtract">−</button>
+
+        <button class="calculator-button" data-value="7">7</button>
+        <button class="calculator-button" data-value="8">8</button>
+        <button class="calculator-button" data-value="9">9</button>
+        <button class="calculator-button operator" data-action="add">+</button> <!-- Now single row -->
+
+        <button class="calculator-button" data-value="4">4</button>
+        <button class="calculator-button" data-value="5">5</button>
+        <button class="calculator-button" data-value="6">6</button>
+        <button class="calculator-button backspace" data-action="backspace">⌫</button> <!-- New Backspace button -->
+
+        <button class="calculator-button" data-value="1">1</button>
+        <button class="calculator-button" data-value="2">2</button>
+        <button class="calculator-button" data-value="3">3</button>
+        <button class="calculator-button equals span-rows-2" data-action="equals">=</button> <!-- Still spans 2 rows -->
+
+        <button class="calculator-button zero" data-value="0">0</button>
+        <button class="calculator-button" data-value=".">.</button>
+        <!-- No empty div here, as '=' will fill this space -->
+    </div>
+
+    <!-- New section for LLM features -->
+    <div class="mt-6 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl flex flex-col space-y-4">
+        <button id="mathFactButton" class="w-full py-3 bg-purple-600 text-white text-xl rounded-xl shadow-lg hover:bg-purple-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 flex items-center justify-center space-x-2">
+            <span>Get Math Fact ✨</span>
+        </button>
+        <div id="mathFactDisplay" class="mt-4 p-5 bg-white rounded-xl shadow-md text-gray-800 text-center text-lg min-h-[6rem] flex items-center justify-center hidden">
+            <!-- Math fact will be displayed here -->
+        </div>
+
+        <button id="explainCalculationButton" class="w-full py-3 bg-blue-600 text-white text-xl rounded-xl shadow-lg hover:bg-blue-700 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center justify-center space-x-2">
+            <span>Explain Calculation ✨</span>
+        </button>
+        <div id="explanationDisplay" class="mt-4 p-5 bg-white rounded-xl shadow-md text-gray-800 text-center text-lg min-h-[6rem] flex items-center justify-center hidden">
+            <!-- Explanation will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
